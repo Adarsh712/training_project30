@@ -128,27 +128,19 @@ document.querySelector(".btn-lettuce").onclick = function () {
 //Done
 //Challenge 2 - Render only the items selected in the ingredients board based on the state
 function renderIngredientsBoard() {
-  var k = Object.keys(state);
-  var check = k.filter((val) => state[val]);
-  var a = ["Patty", "Cheese", "Tomatoes", "Onions", "Lettuce"];
-  for (i of a) {
-    if (check.includes(i)) {
+  for (i in state) {
+    if (state[i])
       document.querySelector("." + i.toLowerCase()).style.display = "inherit";
-    } else {
-      document.querySelector("." + i.toLowerCase()).style.display = "none";
-    }
+    else document.querySelector("." + i.toLowerCase()).style.display = "none";
   }
 }
 //Judgement 1
 //In the p element having price-details as the class, display the calculated
-// //price based on ingredients
-// function renderPrice() {
-//   var k = Object.keys(state);
-//   var check = k.filter((val) => ingredients[val]);
-//   var sum = 0;
-//   for (i of check) {
-//     console.log(ingredients.i);
-//     sum += Number(ingredients.i);
-//   }
-//   console.log(sum)
-// }
+//price based on ingredients
+function renderPrice() {
+  var sum = 0;
+  for (i in ingredients) {
+    if (state[i]) sum += ingredients[i];
+  }
+  document.querySelector(".price-details").innerHTML = "INR " + sum;
+}
